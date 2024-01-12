@@ -5,10 +5,6 @@ name: ddev-dblog
 global_files:
   - commands/db/dblog
 
-# List of add-on names that this add-on depends on
-dependencies:
-  - db
-
 # DDEV environment variables can be interpolated into these actions
 post_install_actions:
   - chmod +x ~/.ddev/commands/db/dblog

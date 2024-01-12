@@ -50,4 +50,4 @@ Remember to turn off the db query logging. The logging is a drain on your applic
         ddev dblog off
 
 
-**Contributed and maintained by [@CONTRIBUTOR](https://github.com/apotek)/ [@CONTRIBUTOR ![Chromatic LLC hummingbird](https://avatars.githubusercontent.com/u/852809?s=50&v=4)](https://github.com/ChromaticHQ)**
+**Contributed and maintained by [apotek](https://github.com/apotek) @ [Chromatic](https://github.com/ChromaticHQ)**
