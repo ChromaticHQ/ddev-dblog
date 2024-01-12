@@ -15,35 +15,15 @@ setup() {
   ddev start -y >/dev/null
 }
 
+capture_state() {
+  state=$(ddev mysql -u root -proot -e "show variables like 'general_log';" | grep general_log | cut -f 2)
+  echo "# dblog state: $state" >&3
+}
+
 health_checks() {
   # Do something useful here that verifies the add-on
-  # ddev exec "curl -s elasticsearch:9200" | grep "${PROJNAME}-elasticsearch"
-  state=$(ddev mysql -u root -proot -e "show variables like 'general_log';" | grep general_log | cut -f 2)
-  echo "# Captured state is $state"
-  case "$state" in
-    OFF)
-      echo "# Turning dblog on..."
-      ddev dblog on
-      on=$(ddev mysql -u root -proot -e "show variables like 'general_log';" | grep general_log | cut -f 2)
-      if [ "$on" != "ON"]; then
-        echo "Failed to enable db query log"
-        failed_dblog_command
-      fi
-      ;;
-    ON)
-      echo "# Turning dblog off..."
-      ddev dblog off
-      off=$(ddev mysql -u root -proot -e "show variables like 'general_log';" | grep general_log | cut -f 2)
-      if [ "$off" != "OFF"]; then
-        echo "Failed to disable db query log"
-        failed_dblog_command
-      fi
-      ;;
-    *)
-      echo "# Could not determine log state"
-      failed_db_log_test
-      ;;
-  esac
+  echo "# Running health checks..." >&3
+  ddev dblog ping | grep 'OK'
 }
 
 teardown() {
@@ -53,14 +33,35 @@ teardown() {
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
-@test "install from directory" {
-  set -eu -o pipefail
-  cd ${TESTDIR}
-  echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get ${DIR}
-  ddev restart
-  echo "# Running health checks..."
-  health_checks
+toggle() {
+  echo "# Test toggle of dblog state..." >&3
+  capture_state
+  case "$state" in
+    OFF)
+      echo "# Turning dblog on..." >&3
+      ddev dblog on
+      capture_state
+      echo "# dblog state is now $state" >&3
+      if [ "$state" != "ON"]; then
+        echo "Failed to enable db query log" >&3
+        failed_dblog_command
+      fi
+      ;;
+    ON)
+      echo "# Turning dblog off..." >&3
+      ddev dblog off
+      capture_state
+      echo "# dblog state is now $state" >&3
+      if [ "$state" != "OFF"]; then
+        echo "Failed to disable db query log" >&3
+        failed_dblog_command
+      fi
+      ;;
+    *)
+      echo "# Unexpected log state: $state" >&3
+      failed_db_log_test
+      ;;
+  esac
 }
 
 @test "install from release" {
@@ -68,8 +69,20 @@ teardown() {
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   echo "# ddev get chromatichq/ddev-dblog with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get chromatichq/ddev-dblog
-  ddev restart #>/dev/null
-  echo "# Running health checks..."
+  ddev restart >/dev/null
   health_checks
 }
 
+@test "install from directory" {
+  set -eu -o pipefail
+  cd ${TESTDIR}
+  echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
+  ddev get ${DIR}
+  ddev restart
+  health_checks
+}
+
+@test "toggle dblog state" {
+  toggle
+  toggle
+}

@@ -14,14 +14,18 @@ case "$@" in
   off)
     state=0
     ;;
+  ping)
+    echo "OK"
+    exit 0
+    ;;
   tail)
     state=1
     previous_state=$(mysql -u root -proot -e "SHOW VARIABLES LIKE 'general_log'\G;" | awk '/Value:/ { print $2 }')
     trap ctrl_c INT
     ;;
   *)
-    echo "Tell us whether you want the query log on or off, or if you want to tail it."
-    echo "Usage: querylog on|off|tail"
+    echo "Tell us whether you want the db query log on or off, or if you want to tail it."
+    echo "Usage: " $(basename $0) " on|off|tail"
     exit 1
     ;;
 esac
