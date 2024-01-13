@@ -1,6 +1,7 @@
 [![tests](https://github.com/ChromaticHQ/ddev-dblog/actions/workflows/tests.yml/badge.svg)](https://github.com/ddev/ddev-dblog/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
 
 # DDEV dblog <!-- omit in toc -->
+**Contributed and maintained by [Chromatic](https://github.com/ChromaticHQ).**
 
 * [What is ddev-dblog?](#what-is-ddev-dblog)
 * [Getting Started](#getting-started)
@@ -50,4 +51,4 @@ Remember to turn off the db query logging. The logging is a drain on your applic
         ddev dblog off
 
 
-**Contributed and maintained by [apotek](https://github.com/apotek) @ [Chromatic](https://github.com/ChromaticHQ)**
+
