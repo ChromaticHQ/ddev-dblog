@@ -20,7 +20,7 @@ Database query logging will slow down your application, so this command is inten
 ## Getting started
 Get and install your db log command
 
-        ddev get ddev-dblog
+        ddev get chromatichq/ddev-dblog
 
 ## Using dblog
 
