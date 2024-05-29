@@ -11,7 +11,7 @@ setup() {
   # ddev doesn't natively support more than one database per environment, so
   # perhaps some hacking will be necessary so we can test support for other
   # server types down the road.
-  ddev config --project-name=${PROJNAME} --database=mariadb:10.4
+  ddev config --project-name=${PROJNAME} --database=mariadb:10.11
   ddev start -y >/dev/null
 }
 
@@ -69,7 +69,7 @@ toggle() {
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   echo "# ddev get chromatichq/ddev-dblog with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get chromatichq/ddev-dblog
-  ddev restart >/dev/null
+  ddev restart
   health_checks
 }
 

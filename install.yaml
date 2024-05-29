@@ -6,9 +6,7 @@ global_files:
   - commands/db/dblog
 
 # DDEV environment variables can be interpolated into these actions
-post_install_actions:
-  - chmod -vv +x ~/.ddev/commands/db/dblog
+# post_install_actions:
 
 # Shell actions that can be done during removal of the add-on
-removal_actions:
-  - rm ~/.ddev/commands/db/dblog
+# removal_actions:
