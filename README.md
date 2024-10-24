@@ -21,7 +21,17 @@ Database query logging will slow down your application, so this command is inten
 ## Getting started
 Get and install your db log command
 
-        ddev get chromatichq/ddev-dblog
+For DDEV v1.23.5 or above run
+
+```sh
+ddev add-on get chromatichq/ddev-dblog
+```
+
+For earlier versions of DDEV run
+
+```sh
+ddev get chromatichq/ddev-dblog
+```
 
 ## Using dblog
 
@@ -29,26 +39,31 @@ Get and install your db log command
 
 To follow the logs live (tail), do
 
-        ddev dblog tail
+```sh
+ddev dblog tail
+```
 
 which will tail the log file right in your current terminal window. `ctrl+c` to quit. When you quit tailing, the db query log is turned off automatically.
 
 ### Turn on db query logging
 If you just want to turn on the logging so you can capture a bunch of output and examine it later, do
 
-        ddev dblog on
+```sh
+ddev dblog on
+```
 
 You can find the logs in your db service at /tmp/dblog. Use
 
-        ddev ssh -s db
-        less /tmp/dblog
+```sh
+ddev ssh -s db
+less /tmp/dblog
+```
 
 to page through it or search it.
 
 ### Turn off db query logging
 Remember to turn off the db query logging. The logging is a drain on your application performance.
 
-        ddev dblog off
-
-
-
+```sh
+ddev dblog off
+```
