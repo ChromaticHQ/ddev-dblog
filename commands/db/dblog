@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ## #ddev-generated
 ## Description: Turn on query logging for diagnostic purposes.

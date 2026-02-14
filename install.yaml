@@ -5,6 +5,9 @@ name: ddev-dblog
 global_files:
   - commands/db/dblog
 
+ddev_version_constraint: '>= v1.23.5'
+#ddev_version_constraint: '>= v1.24.10'
+
 # DDEV environment variables can be interpolated into these actions
 # post_install_actions:
 
