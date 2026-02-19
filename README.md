@@ -1,7 +1,7 @@
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
-[![tests](https://github.com/ddev/ddev-dblog/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-dblog/actions/workflows/tests.yml?query=branch%3Amain)
-[![last commit](https://img.shields.io/github/last-commit/ddev/ddev-dblog)](https://github.com/ddev/ddev-dblog/commits)
-[![release](https://img.shields.io/github/v/release/ddev/ddev-dblog)](https://github.com/ddev/ddev-dblog/releases/latest)
+[![tests](https://github.com/ChromaticHQ/ddev-dblog/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ChromaticHQ/ddev-dblog/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/ChromaticHQ/ddev-dblog)](https://github.com/ChromaticHQ/ddev-dblog/commits)
+[![release](https://img.shields.io/github/v/release/ChromaticHQ/ddev-dblog)](https://github.com/ChromaticHQ/ddev-dblog/releases/latest)
 
 # DDEV dblog <!-- omit in toc -->
 **Contributed and maintained by [Chromatic](https://www.chromatichq.com).**
